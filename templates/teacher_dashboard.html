@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Teacher {% endblock %}
+{% block navbar %}
+<div class="content">
+		
+	<nav class="navbar navbar-expand-md navbar-dark bg-primary font-weight-bold fixed-top mb-5" id="mainNav">
+		<div class="container">
+		
+		<a class="navbar-brand ml-2" href="{{ url_for('teacher') }}">
+		<img src="{{url_for('static', filename = 'img/download.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+		 San Jose Litex SHS</a>
+		<button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold text-white rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto ">
+			<li class="nav-item mx-0 mx-lg-1 active">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('teacher') }}"><span class="fa fa-home fa-fw" id="span"></span>Home</a>
+			</li>
+			<li class="nav-item mx-0 mx-lg-1 dropdown active">
+				<a class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="fa fa-bars fa-fw" id="span"></span>Menu
+				</a>
+				<div class="dropdown-menu "  aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('rooms')}}">Rooms</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('grades')}}">Grade</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('strand')}}">Strand</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('section')}}">Section</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('subject')}}">Subject</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('schedule')}}">Schedule</a>
+				</div>
+			</li>
+			<li class="nav-item mx-0 mx-lg-1 dropdown active">
+				
+				<a class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="fa fa-user fa-fw" id="span"></span>{{ username }}
+				</a>
+				
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#" style="color:blue;">My Profile</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{{ url_for('logout') }}" style="color:red;"><i class="fas fa-sign-out-alt"></i> Log-out Account</a>
+				</div>
+			</li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	<br><br><br><br>
+	<!-- logged in user information -->
+</div>
+{% endblock %}
+
+{% block content %}
+	
+	
+	<div class="container mt-5">
+	<h1 class="text-left">Teacher Dashboard</h1>
+	<h5 class="alert mt-2" id="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</h5>
+	</div>
+
+	<div class="container">
+	<div class="row col-xl-12 col-md-10 " id="rowboard">
+		<div class="col-xl-3 col-md-6 ">
+			<div class="card bg-primary text-white mb-4">
+				{% for total in count %}
+				<div class="card-body"><i class="fas fa-users fa-3x"></i><h1 class="text-center">{{ total }}</h1></div>
+				{% endfor%}
+				<div class="card-footer d-flex align-items-center justify-content-between">
+					<h4 class="text-white">Total Students</h4>
+					<div class="small text-white"></div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card bg-warning text-white mb-4">
+				{% for rooms in room %}
+				<div class="card-body"><i class="fas fa-door-closed fa-3x"></i><h1 class="text-center">{{ rooms }}</h1></div>
+				{% endfor %}
+				<div class="card-footer d-flex align-items-center justify-content-between">
+					<h4 class="text-white">Total rooms</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card bg-success text-white mb-4">
+				<div class="card-body"><i class="fas fa-clock fa-3x"></i><h1 class="text-center">0</h1></div>
+				<div class="card-footer d-flex align-items-center justify-content-between">
+					<h4 class="text-white">Total time</h4>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3 col-md-6">
+			<div class="card bg-danger text-white mb-4">
+				<div class="card-body"><i class="fas fa-calendar fa-3x"></i><h1 class="text-center">0</h1></div>
+				<div class="card-footer d-flex align-items-center justify-content-between">
+					<h4 class="text-white">Total rooms</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+
+
+	<!-- Footer -->
+	<footer class="footer text-center copyright">
+		<div class="container">
+		  <div class="row">
+	
+			<!-- Footer Location -->
+			<div class="col-lg-12 mb-5 mb-lg-0">
+			  
+			  <p class="lead mb-0">Copyright &copy; SJLSHS 2020</p>
+			</div>
+
+	
+			<!-- Footer About Text -->
+	
+		  </div>
+		</div>
+	  </footer>
+	
+	  <!-- Copyright Section -->
+	
+
+	<!-- <section class="copyright py-4 text-center text-white" style="left: 0;bottom: 0;width: 100%;">
+    <div class="container">
+      
+    </div>
+  	</section> -->
+
+{% endblock %}
+ 

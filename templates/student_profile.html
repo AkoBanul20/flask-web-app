@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Profile | Student{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-expand-md navbar-dark bg-primary font-weight-bold  mb-2" id="mainNav">
+	<div class="container">
+	
+	<a class="navbar-brand ml-2" href="/Student">
+	<img src="{{url_for('static', filename = 'img/download.png')}} " alt="Logo" width="30" height="30" class="d-inline-block align-top">
+	 San Jose Litex SHS</a>
+	<button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold text-white rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto ">
+		<li class="nav-item mx-0 mx-lg-1 active">
+			<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#"><span class="fa fa-home fa-fw" id="span"></span>Home</a>
+		</li>
+		<li class="nav-item mx-0 mx-lg-1 active">
+			<a class="nav-link nav-link py-3 px-0 px-lg-3 rounded" href="#"><span class="fa fa-clock fa-fw" id="span"></span>My Schedules</a>
+		</li>
+		<li class="nav-item mx-0 mx-lg-1 dropdown active">
+			
+			<a class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="fa fa-user fa-fw" id="span"></span>{{ username }}
+			</a>
+			
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="{{ url_for('prof') }}" style="color:blue;">My Profile</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ url_for('logout') }}" style="color:red;">Log-out Account</a>
+			</div>
+		</li>
+		</ul>
+		</div>
+	</div>
+</nav>
+<br><br>
+{% endblock %}
+
+{% block content %}
+	
+	<div class="content">
+	<h1>STUDENT PROFILES</h1>
+	</div>
+
+{% endblock %}
+	
+
+
+  

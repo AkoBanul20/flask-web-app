@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block title %}Strand | Teacher {% endblock %}
+{% block navbar %}
+<div class="content">
+		
+	<nav class="navbar navbar-expand-md navbar-dark bg-primary font-weight-bold fixed-top mb-5" id="mainNav">
+		<div class="container">
+		
+		<a class="navbar-brand ml-2" href="{{ url_for('teacher') }}">
+		<img src="{{url_for('static', filename = 'img/download.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+		 San Jose Litex SHS</a>
+		<button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold text-white rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav ml-auto ">
+			<li class="nav-item mx-0 mx-lg-1 active">
+				<a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('teacher') }}"><span class="fa fa-home fa-fw" id="span"></span>Home</a>
+			</li>
+			<li class="nav-item mx-0 mx-lg-1 dropdown active">
+				<a class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="fa fa-bars fa-fw" id="span"></span>Menu
+				</a>
+				<div class="dropdown-menu "  aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('rooms')}}">Rooms</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('grades')}}">Grade</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('strand')}}">Strand</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('section')}}">Section</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('subject')}}">Subject</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" style="color: rgb(47, 101, 172);" href="{{url_for('schedule')}}">Schedule</a>
+				</div>
+			</li>
+			<li class="nav-item mx-0 mx-lg-1 dropdown active">
+				
+				<a class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<span class="fa fa-user fa-fw" id="span"></span>{{ username }}
+				</a>
+				
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				<a class="dropdown-item" href="#" style="color:blue;">My Profile</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" href="{{ url_for('logout') }}" style="color:red;"><i class="fas fa-sign-out-alt"></i> Log-out Account</a>
+				</div>
+			</li>
+			</ul>
+			</div>
+		</div>
+	</nav>
+	<br><br><br><br>
+    <!-- logged in user information -->
+</div>
+{% endblock %}
+{% block content %}
+<div class="container mt-3">
+    {%with messages = get_flashed_messages() %}
+    {%if messages%}
+    {% for message in messages %}
+    <br>
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+            {{message}}
+    </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+        
+        <h1>Strand<button type="button" class="btn btn-success float-sm-right" data-toggle="modal" data-target="#myModal">Add Strand</button></h1>
+        <h5 class="alert mt-2" id="dashboard"><i class="fas fa-certificate"></i> Strand</h5>
+    
+
+    <div class="container">
+        <table class="table table-striped table-bordered table-hover col-lg-9 m-auto">
+            <thead class="thead-dark text-center">
+                    <tr>
+                    
+                    <th scope="col">Strand Code</th>
+                    <th scope="col">Strand Name</th>
+                    <th scope="col">Action</th>
+                    </tr>
+            </thead>
+            <tbody>
+            {% for strands in strand %}
+            <tr class="text-center">
+               
+                
+                <td>{{strands.1}}</td>
+                <td>{{strands.2}}</td>
+                <td>
+                    <a href="#" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{strands.0}}">Edit</a>
+                    <a href="/delete_strand/{{ strands.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('Are You Sure For Delete?')">Delete</a>
+                </td>
+                </td>
+                
+            </tr>
+             <!-- update modal -->
+            <div id="modaledit{{strands.0}}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                 <div class="modal-content">
+                    <div class="modal-header">
+                      <h4 class="modal-title">Update Information</h4>
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                       <form action="{{url_for('update_strand')}}" method="POST">
+                        
+                          <div class="form-group">
+                             <label>Strand Code:</label>
+                              <input type="hidden"  name="id" value="{{strands.0}}">
+                             <input type="text" class="form-control" name="strand_code" value="{{strands.1}}">
+                          </div>
+                          <div class="form-group">
+                            <label>Strand Name</label>
+                            <input type="text" class="form-control" name="strand_name" value="{{strands.2}}">
+                         </div>
+                          <div class="form-group float-right">
+                             <button class="btn btn-primary" type="submit">Update</button>
+                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+                       </form>
+                    </div>
+                    <div class="modal-footer">
+                       
+                    </div>
+                 </div>
+              </div>
+           </div>
+             <!-- end modal update -->
+            {% endfor %}
+            </tbody>
+        </table>
+        
+        </div>
+        <br><br>
+</div>
+
+
+<div id="myModal" class="modal fade">
+
+
+    <div class="modal-dialog">
+ 
+ 
+       <div class="modal-content">
+ 
+ 
+          <div class="modal-header">
+            <h4 class="modal-title">Please Insert Data</h4>
+ 
+             <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+             <form action="{{url_for('insert_strand')}}" method="POST">
+                <div class="form-group">
+                   <label>Strand Code:</label>
+                   <input type="text" class="form-control" name="strand_code" required="1">
+                </div>
+                <div class="form-group">
+                    <label>Strand Name:</label>
+                    <input type="text" class="form-control" name="strand_name" required="1">
+                 </div>
+                <div class="form-group float-right">
+                    <button class="btn btn-primary" type="submit">Insert Data</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+             </form>
+          </div>
+          <div class="modal-footer">
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+
+
+ <footer class="footer text-center copyright">
+    <div class="container">
+      <div class="row">
+
+        <!-- Footer Location -->
+        <div class="col-lg-12 mb-5 mb-lg-0">
+          
+          <p class="lead mb-0">Copyright &copy; SJLSHS 2020</p>
+        </div>
+
+
+        <!-- Footer About Text -->
+
+      </div>
+    </div>
+  </footer>
+
+{% endblock %}

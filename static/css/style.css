@@ -1,0 +1,104 @@
+#mainNav{
+    background-color: rgb(0, 59, 148)!important;
+}
+#sample, #row1:hover{
+    background-color: rgb(30, 126, 252)!important;
+}
+#footer{
+    background-color: rgb(0, 59, 148)!important;
+}
+#sendMessageButton{
+    background-color:rgb(2, 86, 212)!important;
+    border-color: rgb(2, 86, 212)!important;
+}
+.navbar-nav .nav-link.active
+{
+    background-color: rgb(15, 92, 194)!important;
+}
+.navbar-nav .nav-link:hover{
+    color: rgb(30, 126, 252)!important;
+}
+.navbar-toggler
+{
+    background-color: rgb(30, 126, 252)!important;
+    color: white;
+}
+.navbar-toggler:hover{
+    background-color: rgb(30, 126, 252)!important;
+    color: white;
+}
+#about,#contact {
+    background-color: rgb(30, 126, 252)!important;
+}
+#icon{
+    color: rgb(30, 126, 252)!important;
+}
+#span {
+    width: 10px;
+    padding-right: 25px;
+   }
+
+
+
+   /* login CSS properties */
+
+#loginbtn{
+    border-radius: 30px;
+    background-color: rgb(30, 126, 252)!important;
+    border-color: rgb(30, 126, 252)!important;
+    font-weight: bold;
+    width: 150px;
+    height: 50px;
+    margin: auto;
+    
+   
+    
+    
+    
+    
+}
+#card{
+    border-radius: 20px;
+    background-color: rgb(0, 59, 148)!important;
+    
+    
+    
+}
+#loginbtn:hover{
+    background-color: rgb(13, 89, 189)!important;
+}
+
+h1{
+    font-weight: bold;
+}
+#username, #pass,#lname,#fname,#mname,#strand,#grade,#section,#lrn{
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 15px;
+}
+/* #strand,#grade,#section{
+    width: 120px !important;
+} */
+i:hover{
+    color: rgb(13, 89, 189)!important;
+}
+.wholebody{
+    background-color: rgb(30, 126, 252)!important;
+
+}
+#lname,#fname,#mname,#lrn,#username,#pass,#grade,#section,#lrn,#strand{
+    width:250px;
+}
+
+#input{
+    margin-left: 30px;
+    margin-right: 25px;
+}
+#dashboard{
+    background-color: rgb(91, 158, 247)!important;
+    color: rgb(47, 101, 172)!important;
+}
+/* #room-btn{
+    float: right;
+
+} */

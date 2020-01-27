@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% block title %}Sign Up | Student{% endblock %}
+
+{% block content %}
+      <div class="row">
+      <div class="col-md-6 m-auto">
+        <div class="card mt-5 mb-2 mr-3 ml-3 bg-primary" id="card">
+          <div class="card-title text-center mt-2 ">
+            <img src="{{url_for('static', filename = 'img/download.png')}}" width="150px" height="150px">
+          </div>
+          <h1 class="text-white text-center">Register an Account</h1>
+          <div class="card-body" id="reg-form">
+              <form action="{{ url_for('registration') }}" method="POST" class="form-group">
+                <div class="row" id="div1">
+                <div class="input-group mb-2 " id="input">
+                  <div class="input-group-prepend ">
+                    <span class="input-group-text">
+                      <i class="fa fa-user fa-fw"></i>
+                    </span>
+                  </div>
+                  <input type="text" name="lname" class="form-control py-3" placeholder="Last Name" require="required" id="lname">
+                </div>
+                <div class="input-group mb-2 " id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-user fa-fw"></i>
+                    </span>
+                  </div>
+                  <input type="text" name="fname" class="form-control py-3" placeholder="First Name" require="required" id="fname">
+                </div>
+
+                <!--  -->
+                <div class="input-group mb-2" id="input">
+                  <div class="input-group-prepend ">
+                    <span class="input-group-text">
+                      <i class="fa fa-user fa-fw"></i>
+                    </span>
+                  </div>
+                  <input type="text" name="mname" class="form-control py-3" placeholder="Middle Name" require="required" id="mname">
+                </div>
+                <!--  -->
+
+              </div>
+              <div class="row" id="div1">
+                  <!--  -->
+                  <div class="input-group mb-2 "id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-book fa-fw"></i>
+                    </span>
+                  </div>
+                  <select name="grade" class="form-control  " id="grade">
+                    <option>Grade Level</option>
+                      {% for grades in grade %}
+                      <option value="{{grades.1}}">{{grades.1}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <!--  -->
+                
+                <!--  -->
+                <div class="input-group mb-2 " id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-certificate fa-fw"></i>
+                    </span>
+                  </div>
+                  <select name="strand" class="form-control" id="strand">
+                  <option>Strand</option>
+                  {% for strands in strand %}
+                  <option value="{{strands.1}}">{{strands.1}}</option>
+                  {% endfor %}                      
+                      
+                  </select>
+                </div>
+                <!--  -->
+
+                <!--  -->
+                <div class="input-group mb-2 " id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-users fa-fw"></i>
+                    </span>
+                  </div>
+                  <select name="section" class="form-control" id="section">
+                      <option value="1">Section</option>
+                      <option value="1">1</option>
+                      <option value="1">1</option>
+                      <option value="1">1</option>
+                  </select>
+                </div>
+                <!--  -->
+              </div>
+                
+
+              <div class="row" id="div1">
+              <div class="input-group mb-2 " id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-id-card fa-fw"></i>
+                    </span>
+                  </div>
+                  
+                  <input type="text" name="lrn" class="form-control py-3" placeholder="Lrn No." require="required" id=lrn>
+                </div>
+
+
+                <div class="input-group mb-2" id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-users fa-fw"></i>
+                    </span>
+                  </div>
+                  
+                  <input type="text" name="username" class="form-control py-3" placeholder="Username" require="required" id=username>
+                </div>
+
+                <div class="input-group mb-2" id="input">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-lock fa-fw"></i>
+                    </span>
+                  </div>
+                  
+                  <input type="password" name="password" class="form-control py-3" placeholder="Password" require="required" id=pass>
+                </div>
+                
+              </div>
+
+                
+                <div class="text-center mt-2 col-lg-12 center-block form-group">
+                <input type="submit" value="Sign Up" class="btn btn-danger center-block btn-xl" id="loginbtn" name="submit">
+                </div>
+              </form>
+
+              
+          </div>
+        </div>
+      </div>
+    </div>  
+{% endblock %}
+
+  

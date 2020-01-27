@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}DashBoard | Student{% endblock %}
+{% block navbar %}
+<nav class="navbar navbar-expand-md navbar-dark bg-primary font-weight-bold  mb-2 fixed-top" id="mainNav">
+	<div class="container">
+	
+	<a class="navbar-brand ml-2" href="/Student">
+	<img src="{{url_for('static', filename = 'img/download.png')}}" alt="Logo" width="30" height="30" class="d-inline-block align-top">
+	 San Jose Litex SHS</a>
+	<button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold text-white rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto ">
+		<li class="nav-item mx-0 mx-lg-1 active">
+			<a class="nav-link py-3 px-0 px-lg-3 rounded" href="#"><span class="fa fa-home fa-fw" id="span"></span>Home</a>
+		</li>
+		<li class="nav-item mx-0 mx-lg-1 active">
+			<a class="nav-link nav-link py-3 px-0 px-lg-3 rounded" href="#"><span class="fa fa-clock fa-fw" id="span"></span>My Schedules</a>
+		</li>
+		<li class="nav-item mx-0 mx-lg-1 dropdown active">
+			
+			<a class="nav-link dropdown-toggle nav-link py-3 px-0 px-lg-3 rounded" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<span class="fa fa-user fa-fw" id="span"></span>{{ username }}
+			</a>
+			
+			<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item" href="{{ url_for('prof') }}" style="color:blue;">My Profile</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="{{ url_for('logout') }}" style="color:red;">Log-out Account</a>
+			</div>
+		</li>
+		</ul>
+		</div>
+	</div>
+</nav>
+<br><br><br>
+{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+	<h1 class="text-center">TODAY SCHEDULE</h1>
+	<table class="table table-striped  table-hover col-lg-12 m-auto">
+		<thead class="thead-dark text-center">
+				<tr>
+				
+				<th scope="col">Day</th>
+				<th scope="col">Room</th>
+				<th scope="col">Time</th>
+				<th scope="col">Subject</th>
+				<th scope="col">Grade</th>
+				<th scope="col">Strand</th>
+				<th scope="col">Section</th>
+				</tr>
+		</thead>
+		<tbody>
+		{% for schedules in schedule %}
+		  <tr class="text-center table-bordered">
+			  <td>{{schedules.1}}</td>
+			  <td>{{schedules.2}}</td>
+			  <td>{{ schedules.3.strftime('%I:%M %p') }} - {{schedules.4.strftime('%I:%M %p')}} </td>
+			  <td >{{schedules.5}}</td>
+			  <td>{{schedules.6}}</td>
+			  <td>{{schedules.7}}</td>
+			  <td>{{schedules.8}}</td>
+		  </tr>
+		{% endfor %}
+		</tbody>
+	</table>
+	
+	</div>
+
+	<section class="copyright py-4 text-center text-white fixed-bottom">
+		<div class="container">
+		<small>Copyright &copy; SJLSHS 2020</small>
+		</div>
+	</section>
+{% endblock %}

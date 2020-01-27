@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}Login Account | Student{% endblock %}
+{% block nav %} {% endblock %}
+
+{% block content %}
+    <div class="row">
+      <div class="col-lg-5 m-auto">
+        <div class="card mt-5 mr-3 ml-3 bg-primary" id="card">
+          <div class="card-title text-center mt-3 ">
+            <img src="{{url_for('static', filename = 'img/download.png')}}" width="150px" height="150px">
+          </div>
+          <h1 class="text-white text-center">WELCOME</h1>
+          <div class="card-body">
+              <form action="{{ url_for('login_student') }}"  method="POST" id="myid">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-user fa-fw"></i>
+                    </span>
+                  </div>
+                  <input type="text" name="username" class="form-control py-3" placeholder="Username" require="required" id=username value="{{ username }}">
+                </div>
+
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-lock fa-fw"></i>
+                    </span>
+                  </div>
+                  <input type="password" name="password" class="form-control py-3" placeholder="Password" require="required" id=pass>
+                </div>
+                <a href="{{ url_for('registration') }}"><p class="text-white">Not registered? Sign up</p></a>
+                <div class="text-center mt-5">
+                <input type="submit" value="Login" class="btn btn-danger col-lg-5 " id="loginbtn" name="login_user">
+                </div>
+              </form> 
+          </div>
+        </div>
+      </div>
+    </div>  
+    {%with messages = get_flashed_messages() %}
+        {%if messages%}
+        {% for message in messages %}
+        <br>
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+                {{message}}
+        </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+
+
+  {% block script %}
+    <script type="text/javascript">  
+      $(document).ready(function() {  
+          $('#loginbtn').click(function() {  
+              var txt = $('#username').val();  
+              var pass = $('#pass').val();
+              if (txt == '' && pass == '') {  
+                alert('Please Input your Account complete!') 
+                return false
+              }
+              else if(txt=='' && pass!==''){
+                alert('Username field is required')
+                return false
+                }
+              else if(pass=='' && txt!==''){
+                alert('Password field is required')
+                return false
+                }
+              else{
+                $.post("/login", //Required URL of the page on server
+                { // Data Sending With Request To Server
+                username:txt,
+                password:pass
+                },
+                function(response,status){ // Required Callback Function
+                  //"response" receives - whatever written in echo of above PHP script.
+                $("#form")[0].reset();
+                });
+                
+              }
+             
+          });  
+      });  
+    </script>
+  {% endblock %}
+
+
+
+{% endblock %}
+
+
+
+  
+
+
+
+
+  

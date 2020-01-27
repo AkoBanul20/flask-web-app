@@ -1,0 +1,126 @@
+{% extends "base.html "%}
+{% block title %}Sign Up | Teacher {% endblock %}
+{% block content %}
+    {%with messages = get_flashed_messages() %}
+            {%if messages%}
+            {% for message in messages %}
+            <br>
+            <div class="alert alert-success" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label ="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                    {{message}}
+            </div>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+<div class="row">
+  <div class="col-md-6 m-auto">
+    <div class="card mt-3 mb-2 mr-3 ml-3 bg-primary" id="card">
+      <div class="card-title text-center mt-2 ">
+        <img src="{{url_for('static', filename = 'img/download.png')}}" width="150px" height="150px">
+      </div>
+      <h1 class="text-white text-center">Register an Account</h1>
+      <div class="card-body" id="reg-form">
+        <form action="{{ url_for('teacher_register') }}" method="POST" class="form-group">
+          <div class="row" id="div1">
+            <div class="input-group mb-2 " id="input">
+              <div class="input-group-prepend ">
+                <span class="input-group-text">
+                  <i class="fa fa-user fa-fw"></i>
+                </span>
+              </div>
+              <input type="text" name="tno" class="form-control py-3" placeholder="Employee No." require="required"
+                id="lname">
+              <p class="help-block text-danger"></p>
+            </div>
+            <div class="input-group mb-2 " id="input">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-user fa-fw"></i>
+                </span>
+              </div>
+              <input type="text" name="tlname" class="form-control py-3" placeholder="Last Name" require="required"
+                data-validation-required-message="Please enter your Lastname." id="fname">
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <!--  -->
+            <div class="input-group mb-2" id="input">
+              <div class="input-group-prepend ">
+                <span class="input-group-text">
+                  <i class="fa fa-user fa-fw"></i>
+                </span>
+              </div>
+              <input type="text" name="tfname" class="form-control py-3" placeholder="First name" require="required"
+                data-validation-required-message="Please enter your Firstname." id="mname">
+              <p class="help-block text-danger"></p>
+            </div>
+            <!--  -->
+          </div>
+
+          <div class="row" id="div1">
+            <div class="input-group mb-2 " id="input">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-user fa-fw"></i>
+                </span>
+              </div>
+
+              <input type="text" name="tmname" class="form-control py-3" placeholder="Middle Name" require="required"
+                data-validation-required-message="Please enter your Middlename." id=lrn>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="input-group mb-2 " id="input">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-envelope fa-fw"></i>
+                </span>
+              </div>
+
+              <input type="email" name="temail" class="form-control py-3" placeholder="Email Address" require="required"
+                data-validation-required-message="Please enter a Email." id=lrn>
+              <p class="help-block text-danger"></p>
+            </div>
+
+
+            <div class="input-group mb-2" id="input">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-users fa-fw"></i>
+                </span>
+              </div>
+
+              <input type="text" name="tusername" class="form-control py-3" placeholder="Username" require="required"
+                data-validation-required-message="Please enter a username." id=username>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="input-group mb-2" id="input">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="fa fa-lock fa-fw"></i>
+                </span>
+              </div>
+
+              <input type="password" name="tpass" class="form-control py-3" placeholder="Password" required="required"
+                data-validation-required-message="Please enter a password." id=pass>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+
+
+          <div class="text-center mt-5">
+            <input type="submit" value="Register" class="btn btn-danger col-lg-5 " id="loginbtn" name="login_user">
+          </div>
+        </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+{% endblock %}
